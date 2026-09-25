@@ -15,9 +15,9 @@ class GoombaAni
         int frame = 50;
         int animDuration = 50;
         int pauseDuration = 1000;
-        // int speed = 2;   
+        int speed = 2;   
 
-        Goomba g = new Goomba(1);
+        // Goomba g = new Goomba(speed);
 
         // Move right 
         for (int i = 0; i < frame; i++)
