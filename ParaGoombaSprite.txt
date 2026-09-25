@@ -1,0 +1,10 @@
+paraGoombaSprite[0] = @"              ________  ";
+paraGoombaSprite[1] = @"             /        \ ";
+paraGoombaSprite[2] = @"            /  \    /  \ ";
+paraGoombaSprite[3] = @"           /   |    |   \ ";
+paraGoombaSprite[4] = @"_________ /  -^------^-  \ _________";
+paraGoombaSprite[5] = @"\_       |________________|       _/";
+paraGoombaSprite[6] = @"  \_           /    \           _/  ";  
+paraGoombaSprite[7] = @"    \____ ____|      |____ ____/";
+paraGoombaSprite[8] = @"         /____\ ==== /____\ ";
+paraGoombaSprite[9] = @"                             ";
