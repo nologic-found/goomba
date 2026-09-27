@@ -1,12 +1,12 @@
 using System;
 
-class Goomba
+class Goomba : Character
 {
     private string[] goombaSprite;
 
 
-    protected bool changeDirection = false;
-    protected int speed;
+    private bool changeDirection = false;
+    private int speed = 1;
 
 
     // Default constructor

@@ -1,7 +1,10 @@
-class ParaGoomba : Goomba
+class ParaGoomba : Character
 {
     private string[] paraGoombaSprite;
-    public ParaGoomba(int speed = 1) : base(speed)
+    private bool changeDirection = false;
+
+    private int speed = 1;
+    public ParaGoomba(int speed = 1)
     {
         paraGoombaSprite = new string[10];
 
@@ -17,7 +20,7 @@ class ParaGoomba : Goomba
         paraGoombaSprite[9] = @"                             ";
     }
 
-    public override void DrawSprites()
+    public void DrawSprites()
     {
         for (int i = 0; i < paraGoombaSprite.Length; i++)
         {
@@ -28,7 +31,7 @@ class ParaGoomba : Goomba
     /*
     By default this will move right unless the bool changeDirection is equal to true
     */
-    public override void Move()
+    public void Move()
     {
         if (!changeDirection)
         {
@@ -47,5 +50,10 @@ class ParaGoomba : Goomba
             }
         }
 
+    }
+
+    public void ChangeDirection()
+    {
+        changeDirection = !changeDirection;
     }
 }
