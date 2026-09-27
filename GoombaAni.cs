@@ -8,7 +8,7 @@ class GoombaAni
 
     public GoombaAni(Goomba g) { this.g = g; }
 
-    public void MoveRight()
+    public void RightSteps()
     {
 
         for (int i = 1; i < frame; i++)
@@ -22,7 +22,7 @@ class GoombaAni
 
     }
 
-    public void MoveLeft()
+    public void LeftSteps()
     {
         for (int j = frame; j >= 1; j--)
         {
@@ -35,13 +35,15 @@ class GoombaAni
     }
     public void StartAni()
     {
-        MoveRight();
+        RightSteps();
         
-        // Wait for a little bit
         g.ChangeDirection();
+
+        // Wait for a little bit
+        g.DrawSprites();
         Thread.Sleep(pauseDuration);
 
-        MoveLeft();
+        LeftSteps();
 
         // Reset direction
         g.ChangeDirection();
