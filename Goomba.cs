@@ -2,15 +2,13 @@ using System;
 
 class Goomba
 {
-    private string[] goombaSprite
-  {
-    get;set;
-  }
-  
-    private bool changeDirection = false;
-    private int speed;
+    private string[] goombaSprite;
 
-    
+
+    protected bool changeDirection = false;
+    protected int speed;
+
+
     // Default constructor
     public Goomba()
     {
@@ -31,15 +29,15 @@ class Goomba
 
 
     public Goomba(int speed = 2)
-        :this()
+        : this()
     {
         this.speed = speed;
     }
 
     // Print each string from goombaSprite
-    public void DrawSprites()
+    public virtual void DrawSprites()
     {
-        for(int i = 0; i < goombaSprite.Length; i++)
+        for (int i = 0; i < goombaSprite.Length; i++)
         {
             Console.WriteLine(goombaSprite[i]);
         }
@@ -48,31 +46,30 @@ class Goomba
     /*
     By default this will move right unless the bool changeDirection is equal to true
     */
-    public void Move()
+    public virtual void Move()
     {
         if (!changeDirection)
         {
             // Moves right: Add whitespace(s) infront of each string in goombaSprite
-            for(int i = 0; i < goombaSprite.Length; i++)
-        {
-            goombaSprite[i] = new string(' ', speed) + goombaSprite[i];
-        }
+            for (int i = 0; i < goombaSprite.Length; i++)
+            {
+                goombaSprite[i] = new string(' ', speed) + goombaSprite[i];
+            }
         }
         else
         {
-            for(int i = 0; i < goombaSprite.Length; i++)
-        {
-            // Moves left: Removes starting character(s) in the string
-            goombaSprite[i] =  goombaSprite[i].Substring(speed);        
-        }    
+            for (int i = 0; i < goombaSprite.Length; i++)
+            {
+                // Moves left: Removes starting character(s) in the string
+                goombaSprite[i] = goombaSprite[i].Substring(speed);
+            }
         }
-        
+
     }
 
     public void ChangeDirection()
     {
-        // changeDirection = changeDirection ? false : true;
         changeDirection = !changeDirection;
     }
 
-}   
+}
