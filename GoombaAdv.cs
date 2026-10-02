@@ -7,12 +7,15 @@ class GoombaAdv : Character
 
 
     private bool changeDirection = false;
+    private bool frameToggle = false;
     private int speed = 1;
-
+    private int pos = 0;
 
     // Default constructor
-    public GoombaAdv()
+    public GoombaAdv(int speed = 1)
     {
+        this.speed = speed;
+
         goombaSpriteLeft = new string[10];
 
         goombaSpriteLeft[0] = @"     ________  ";
@@ -40,49 +43,15 @@ class GoombaAdv : Character
         goombaSpriteRight[9] = @"                     ";
     }
 
-
-
-    public GoombaAdv(int speed = 2)
-        : this()
-    {
-        this.speed = speed;
-    }
-
-    public void DrawLeft()
-    {
-        Console.Clear();
-
-        for (int i = 0; i < goombaSpriteLeft.Length; i++)
-        {
-            // DrawLeft();
-            // DrawRight();
-            Console.WriteLine(goombaSpriteLeft[i]);
-            // Thread.Sleep(20);
-            // Console.WriteLine(goombaSpriteRight[i]);
-        }
-    }
-
-    public void DrawRight()
-    {
-    //         //     
-    //     //     Console.Clear();
-    //     //     for (int j = 0; j < goombaSpriteRight.Length; j++)
-    //     //     {
-    //     //         // DrawLeft();
-    //     //         // DrawRight();
-    //     //         Console.WriteLine(goombaSpriteRight[j]);
-    //     //         // Thread.Sleep(20);
-    //     //         // Console.WriteLine(goombaSpriteRight[i]);
-    //     //     }
-    }
-
     // Print each string from goombaSprite
     public virtual void DrawSprites()
     {
-    
-        DrawLeft();
-        DrawRight();
+        string[] currentFrame = frameToggle ? goombaSpriteLeft : goombaSpriteRight;
 
+        for (int i = 0; i < currentFrame.Length; i++)
+        {
+            Console.WriteLine(new string(' ', pos) + currentFrame[i]);
+        }
     }
 
 
@@ -93,25 +62,11 @@ class GoombaAdv : Character
     public virtual void Move()
     {
         if (!changeDirection)
-        {
-            // Moves right: Add whitespace(s) infront of each string in goombaSprite
-            for (int i = 0; i < goombaSpriteLeft.Length; i++)
-            {
-                goombaSpriteLeft[i] = new string(' ', speed) + goombaSpriteLeft[i];
-                goombaSpriteRight[i] = new string(' ', speed + 1) + goombaSpriteRight[i];
-
-            }
-        }
+            pos += speed;
         else
-        {
-            for (int i = 0; i < goombaSpriteLeft.Length; i++)
-            {
-                // Moves left: Removes starting character(s) in the string
-                goombaSpriteLeft[i] = goombaSpriteLeft[i].Substring(speed);
-                goombaSpriteLeft[i] = goombaSpriteLeft[i].Substring(speed - 1);
-            }
-        }
+            pos = Math.Max(0, pos - speed);
 
+        frameToggle = !frameToggle;
     }
 
     public void ChangeDirection()
