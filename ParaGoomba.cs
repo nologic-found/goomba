@@ -1,7 +1,11 @@
-class ParaGoomba : Goomba
+class ParaGoomba : Character
 {
     private string[] paraGoombaSprite;
-    public ParaGoomba(int speed = 1) : base(speed)
+    private bool changeDirection = false;
+
+    private int speed = 1;
+    private int pos;
+    public ParaGoomba(int speed = 1)
     {
         paraGoombaSprite = new string[10];
 
@@ -17,35 +21,29 @@ class ParaGoomba : Goomba
         paraGoombaSprite[9] = @"                             ";
     }
 
-    public override void DrawSprites()
+    public void DrawSprites()
     {
         for (int i = 0; i < paraGoombaSprite.Length; i++)
         {
-            Console.WriteLine(paraGoombaSprite[i]);
+            Console.WriteLine(new string(' ',pos) + paraGoombaSprite[i]);
         }
     }
 
     /*
     By default this will move right unless the bool changeDirection is equal to true
     */
-    public override void Move()
+    public void Move()
     {
         if (!changeDirection)
-        {
-            // Moves right: Add whitespace(s) infront of each string in paraGoombaSprite
-            for (int i = 0; i < paraGoombaSprite.Length; i++)
-            {
-                paraGoombaSprite[i] = new string(' ', speed) + paraGoombaSprite[i];
-            }
-        }
+            pos += speed;
         else
-        {
-            for (int i = 0; i < paraGoombaSprite.Length; i++)
-            {
-                // Moves left: Removes starting character(s) in the string
-                paraGoombaSprite[i] = paraGoombaSprite[i].Substring(speed);
-            }
-        }
+            pos = Math.Max(0, pos - speed);
 
+    }
+
+
+    public void ChangeDirection()
+    {
+        changeDirection = !changeDirection;
     }
 }

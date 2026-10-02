@@ -1,55 +1,40 @@
 class GoombaAni
 {
-    private Goomba g;
-    private int frame = 30;
-    private int animDuration = 50;
-    private int pauseDuration = 1000;
+    private Character character;
+    private int frame;
+    private int animDuration;
+    private int pauseDuration;
 
-
-    public GoombaAni(Goomba g) { this.g = g; }
-
-    public void RightSteps()
+    public GoombaAni(Character character, int frame = 30, int animDuration = 100, int pauseDuration = 750)
     {
-
-        for (int i = 1; i < frame; i++)
-        {
-            Console.Clear();
-            g.DrawSprites();
-            Thread.Sleep(animDuration);
-            g.Move();
-        }
-
-
+        this.character = character;
+        this.frame = frame;
+        this.animDuration = animDuration;
+        this.pauseDuration = pauseDuration;
     }
 
-    public void LeftSteps()
+    public void runFrame()
     {
-        for (int j = frame; j >= 1; j--)
+        for (int i = frame; i >= 1; i--)
         {
             Console.Clear();
-            g.DrawSprites();
+            character.Move();
+            character.DrawSprites();
             Thread.Sleep(animDuration);
-            g.Move();
         }
 
     }
     public void StartAni()
     {
-        RightSteps();
-        
-        g.ChangeDirection();
+        runFrame();
+        character.ChangeDirection();
 
         // Wait for a little bit
-        g.DrawSprites();
         Thread.Sleep(pauseDuration);
-
-        LeftSteps();
+        runFrame();
 
         // Reset direction
-        g.ChangeDirection();
-
+        character.ChangeDirection();
     }
-
-
 }
 

@@ -1,13 +1,13 @@
 using System;
 
-class Goomba
+class Goomba : Character
 {
     private string[] goombaSprite;
 
 
-    protected bool changeDirection = false;
-    protected int speed;
-
+    private bool changeDirection = false;
+    private int speed = 1;
+    private int pos;
 
     // Default constructor
     public Goomba()
@@ -22,7 +22,7 @@ class Goomba
         goombaSprite[5] = @"   |_________________|  ";
         goombaSprite[6] = @"         /    \         ";
         goombaSprite[7] = @"   ____ |      |____    ";
-        goombaSprite[8] = @"  /____| ====  |_____\  ";
+        goombaSprite[8] = @"  /____|  ====  |_____\  ";
         goombaSprite[9] = @"                        ";
     }
 
@@ -35,37 +35,26 @@ class Goomba
     }
 
     // Print each string from goombaSprite
-    public virtual void DrawSprites()
+    public void DrawSprites()
     {
         for (int i = 0; i < goombaSprite.Length; i++)
         {
-            Console.WriteLine(goombaSprite[i]);
+            Console.WriteLine(new string(' ',pos) + goombaSprite[i]);
         }
     }
 
     /*
     By default this will move right unless the bool changeDirection is equal to true
     */
-    public virtual void Move()
+    public void Move()
     {
         if (!changeDirection)
-        {
-            // Moves right: Add whitespace(s) infront of each string in goombaSprite
-            for (int i = 0; i < goombaSprite.Length; i++)
-            {
-                goombaSprite[i] = new string(' ', speed) + goombaSprite[i];
-            }
-        }
+            pos += speed;
         else
-        {
-            for (int i = 0; i < goombaSprite.Length; i++)
-            {
-                // Moves left: Removes starting character(s) in the string
-                goombaSprite[i] = goombaSprite[i].Substring(speed);
-            }
-        }
+            pos = Math.Max(0, pos - speed);
 
     }
+
 
     public void ChangeDirection()
     {
