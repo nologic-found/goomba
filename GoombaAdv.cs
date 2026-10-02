@@ -44,7 +44,7 @@ class GoombaAdv : Character
     }
 
     // Print each string from goombaSprite
-    public virtual void DrawSprites()
+    public void DrawSprites()
     {
         string[] currentFrame = frameToggle ? goombaSpriteLeft : goombaSpriteRight;
 
@@ -59,7 +59,7 @@ class GoombaAdv : Character
     /*
     By default this will move right unless the bool changeDirection is equal to true
     */
-    public virtual void Move()
+    public void Move()
     {
         if (!changeDirection)
             pos += speed;

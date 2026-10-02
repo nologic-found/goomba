@@ -7,7 +7,7 @@ class Goomba : Character
 
     private bool changeDirection = false;
     private int speed = 1;
-
+    private int pos;
 
     // Default constructor
     public Goomba()
@@ -22,7 +22,7 @@ class Goomba : Character
         goombaSprite[5] = @"   |_________________|  ";
         goombaSprite[6] = @"         /    \         ";
         goombaSprite[7] = @"   ____ |      |____    ";
-        goombaSprite[8] = @"  /____| ====  |_____\  ";
+        goombaSprite[8] = @"  /____|  ====  |_____\  ";
         goombaSprite[9] = @"                        ";
     }
 
@@ -39,7 +39,7 @@ class Goomba : Character
     {
         for (int i = 0; i < goombaSprite.Length; i++)
         {
-            Console.WriteLine(goombaSprite[i]);
+            Console.WriteLine(new string(' ',pos) + goombaSprite[i]);
         }
     }
 
@@ -49,23 +49,12 @@ class Goomba : Character
     public void Move()
     {
         if (!changeDirection)
-        {
-            // Moves right: Add whitespace(s) infront of each string in goombaSprite
-            for (int i = 0; i < goombaSprite.Length; i++)
-            {
-                goombaSprite[i] = new string(' ', speed) + goombaSprite[i];
-            }
-        }
+            pos += speed;
         else
-        {
-            for (int i = 0; i < goombaSprite.Length; i++)
-            {
-                // Moves left: Removes starting character(s) in the string
-                goombaSprite[i] = goombaSprite[i].Substring(speed);
-            }
-        }
+            pos = Math.Max(0, pos - speed);
 
     }
+
 
     public void ChangeDirection()
     {
