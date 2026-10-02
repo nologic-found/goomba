@@ -35,7 +35,7 @@ class Goomba : Character
     }
 
     // Print each string from goombaSprite
-    public virtual void DrawSprites()
+    public void DrawSprites()
     {
         for (int i = 0; i < goombaSprite.Length; i++)
         {
@@ -46,7 +46,7 @@ class Goomba : Character
     /*
     By default this will move right unless the bool changeDirection is equal to true
     */
-    public virtual void Move()
+    public void Move()
     {
         if (!changeDirection)
         {
